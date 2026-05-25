@@ -1,0 +1,40 @@
+//
+// _sidenav.scss
+//
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+    position: relative;
+    scroll-behavior: smooth;
+    @apply h-full w-full;
+}
+
+body {
+    // font-family: "Montserrat", sans-serif;
+    @apply font-base;
+    @apply antialiased overflow-x-hidden font-normal text-sm leading-normal bg-default-50 text-default-600 h-full w-full;
+}
+
+code {
+    @apply text-primary-500;
+}
+
+.text-muted {
+    @apply text-default-400;
+}
+
+.wrapper {
+    @apply flex flex-col min-h-full;
+}
+
+// Page Content
+.page-content {
+    @apply flex flex-col flex-auto relative transition-all duration-200 h-screen;
+}
+
+main {
+    // @apply flex-grow py-6 px-6;
+    @apply flex-grow lg:container px-6 pt-6;
+}

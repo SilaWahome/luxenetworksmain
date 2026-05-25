@@ -1,0 +1,50 @@
+//
+// _sidenav.scss
+//
+
+
+aside+.page-content {
+    @apply lg:ms-sidenav;
+}
+
+
+// Hidden Sidenav View ( Fullscreen page content view)
+@screen lg {
+    #app-menu {
+        @apply lg:py-0;
+
+        &.opened {
+            @apply -ms-sidenav;
+
+            &+.page-content {
+                @apply ms-0;
+            }
+        }
+    }
+}
+
+
+
+// Menu Active
+.admin-menu {
+
+    .menu-dot {
+        @apply i-tabler-circle-filled scale-[.25] text-2xl opacity-75;
+    }
+
+    .menu-item {
+        a.active {
+            @apply text-primary bg-primary/5 relative;
+        }
+    }
+
+    .menu-arrow {
+        @apply i-tabler-plus ms-auto text-sm transition-all;
+    }
+
+    .hs-accordion.active {
+        .menu-arrow {
+            @apply i-tabler-minus;
+        }
+    }
+}

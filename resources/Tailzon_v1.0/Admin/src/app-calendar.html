@@ -1,0 +1,50 @@
+@@include('partials/main.html')
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Calendar"})
+
+    @@include('partials/head-css.html')
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        @@include('partials/sidenav.html')
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+
+            @@include('partials/topbar.html')
+
+            <main>
+
+                @@include("partials/page-title.html", {"subtitle":"Menu","title":"Calendar"})
+
+                <div class="card">
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+
+            </main>
+
+            @@include('partials/footer.html')
+
+        </div>
+        <!-- End Page content -->
+
+    </div>
+
+    @@include('partials/footer-scripts.html')
+
+    <!-- plugin js -->
+    <script src="assets/libs/fullcalendar/index.global.min.js"></script>
+
+    <!-- calendar init -->
+    <script src="assets/js/pages/app-calendar.js"></script>
+
+
+</body>
+
+</html>

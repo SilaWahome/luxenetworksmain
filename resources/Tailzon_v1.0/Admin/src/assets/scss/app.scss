@@ -1,0 +1,28 @@
+/*
+Template Name: Tailzon - Tailwind CSS 3 Admin Layout & UI Kit Template
+Version: 1.0
+Author: MyraStudio
+File: Main Css File
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Structure
+@import "structure/general";
+@import "structure/sidenav";
+@import "structure/topbar";
+
+// Components
+@import "custom/helper";
+@import "custom/buttons";
+@import "custom/card";
+@import "custom/forms";
+@import "custom/chart";
+@import "custom/fullcalendar";
+
+
+
+// Advanced Plugins
+@import "custom/simplebar";

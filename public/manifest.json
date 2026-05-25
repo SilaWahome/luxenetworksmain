@@ -1,0 +1,18 @@
+{
+  "name": "Luxenet Networks",
+  "short_name": "Luxenet",
+  "description": "Luxenet Networks - Technology, Networking, and Gaming",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060d14",
+  "theme_color": "#060d14",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
