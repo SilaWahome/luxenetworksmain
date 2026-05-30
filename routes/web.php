@@ -105,7 +105,25 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
     Route::get('/top-blogs/export', [AdminController::class, 'exportTopBlogs'])->name('top_blogs.export');
+
+    // Admin Shop Management
+    Route::get('/shop', [\App\Http\Controllers\Admin\ShopManagementController::class, 'index'])->name('shop.index');
+    Route::post('/shop/product', [\App\Http\Controllers\Admin\ShopManagementController::class, 'storeProduct'])->name('shop.store');
+    Route::patch('/shop/product/{product}', [\App\Http\Controllers\Admin\ShopManagementController::class, 'updateProduct'])->name('shop.update');
+    Route::delete('/shop/product/{product}', [\App\Http\Controllers\Admin\ShopManagementController::class, 'deleteProduct'])->name('shop.delete');
+    Route::get('/shop/orders', [\App\Http\Controllers\Admin\ShopManagementController::class, 'orders'])->name('shop.orders');
+    Route::patch('/shop/orders/{order}', [\App\Http\Controllers\Admin\ShopManagementController::class, 'updateOrderStatus'])->name('shop.orders.update');
+    // These routes are named admin.shop.* because they live inside the admin middleware group
 });
+
+// Public Shop Routes
+Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.catalog');
+Route::get('/shop/product/{product}', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
+Route::get('/cart', [\App\Http\Controllers\ShopController::class, 'cart'])->name('shop.cart');
+Route::post('/cart/add/{product}', [\App\Http\Controllers\ShopController::class, 'addToCart'])->name('shop.cart.add');
+Route::post('/cart/remove/{id}', [\App\Http\Controllers\ShopController::class, 'removeFromCart'])->name('shop.cart.remove');
+Route::post('/checkout', [\App\Http\Controllers\ShopController::class, 'checkout'])->name('shop.checkout');
+Route::get('/payment/callback', [\App\Http\Controllers\ShopController::class, 'callback'])->name('shop.callback');
 
 // Public Blogs
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');

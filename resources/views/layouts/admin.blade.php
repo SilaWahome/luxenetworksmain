@@ -125,6 +125,22 @@
 
 
                         <li class="menu-item">
+                            <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.shop.index') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary"
+                                href="{{ route('admin.shop.index') }}">
+                                <i class="ti ti-shopping-bag text-xl"></i>
+                                Shop Management
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.shop.orders') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary"
+                                href="{{ route('admin.shop.orders') }}">
+                                <i class="ti ti-shopping-cart text-xl"></i>
+                                Shop Orders
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
                             <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.invoices.index') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary"
                                 href="{{ route('admin.invoices.index') }}">
                                 <i class="ti ti-receipt-2 text-xl"></i>
@@ -192,14 +208,9 @@
                       <a href="{{ route('admin.partners.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.partners.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Partners</a>
                       <a href="{{ route('admin.works.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.works.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Portfolio</a>
                                               <a href="{{ route('admin.blogs.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.blogs.*') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Blogs</a>
-                        <li class="menu-item">
-                            <a href="{{ route('admin.google.signups') }}" class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.google.signups') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary">
-                                <i class="ti ti-login text-xl"></i>
-                                <span class="menu-text">Google Sign‑Ups</span>
-                            </a>
-                        </li>
-                      <a href="{{ route('admin.meet-greet.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.meet-greet.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Meet & Greet</a>
-                      <a href="{{ route('admin.invoices.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.invoices.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Invoices</a>
+                                              <a href="{{ route('admin.meet-greet.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.meet-greet.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Meet & Greet</a>
+                                              <a href="{{ route('admin.invoices.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.invoices.index') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">Invoices</a>
+                                              <a href="{{ route('admin.shop.index') }}" class="rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.shop.*') ? 'text-white bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}"><i class="ti ti-shopping-bag mr-1"></i>Shop</a>
                     </div>
                   </div>
 

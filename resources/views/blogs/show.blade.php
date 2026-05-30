@@ -139,9 +139,12 @@
         <!-- Close Button -->
         <button id="subscribe-close" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl font-bold focus:outline-none" aria-label="Close modal">✕</button>
         
-        <!-- Premium Icon -->
-        <div class="mx-auto w-16 h-16 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
-            <i class="fas fa-paper-plane text-2xl text-white animate-pulse"></i>
+        <!-- Banner Image -->
+        <div class="mx-auto mb-6 w-full h-32 rounded-xl overflow-hidden relative shadow-lg shadow-indigo-500/20">
+            <img src="{{ asset('images/cloud-shaped-heads-collage.jpg') }}" alt="Luxenet Pulse" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end justify-center pb-3">
+                <i class="fas fa-paper-plane text-2xl text-white animate-pulse"></i>
+            </div>
         </div>
 
         <h2 class="text-3xl font-extrabold text-white mb-2 tracking-tight">Join Luxenet Pulse</h2>

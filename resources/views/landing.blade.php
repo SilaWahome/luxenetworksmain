@@ -215,6 +215,7 @@
             <a href="#features">Features</a>
             <a href="#projects">Projects</a>
             <a href="{{ route('meet-greet') }}">Tech Meet & Greet</a>
+            <a href="{{ route('shop.catalog') }}" style="color: var(--primary); font-weight: 700;"><i class="fas fa-shopping-bag" style="margin-right: 5px; font-size: 12px;"></i>Shop</a>
             <a href="#pricing">Pricing</a>
             <a href="#contact">Contact</a>
         </div>
@@ -249,6 +250,7 @@
         <a href="#features">Features</a>
         <a href="#projects">Projects</a>
         <a href="{{ route('meet-greet') }}">Tech Meet & Greet</a>
+        <a href="{{ route('shop.catalog') }}">🛍️ Shop</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
         <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
@@ -319,6 +321,56 @@
             </div>
         </div>
     </section>
+
+    {{-- ===== FEATURED HARDWARE SHOP SECTION ===== --}}
+    @php
+        $featuredProducts = \App\Models\Product::where('stock', '>', 0)->latest()->take(3)->get();
+    @endphp
+    @if($featuredProducts->count() > 0)
+    <section id="shop" style="padding: 100px 5%; background: #060d14; position: relative; z-index: 20; overflow: hidden;">
+        {{-- Subtle background glow --}}
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(184,150,42,0.06) 0%, transparent 70%); pointer-events: none;"></div>
+
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header reveal" style="margin-bottom: 50px;">
+                <label class="glitch-badge" data-text="Hardware & Networking" style="color: var(--primary); border: 1px solid var(--primary); padding: 4px 14px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; background: var(--accent-glow); display: inline-block; margin-bottom: 20px;">Hardware & Networking</label>
+                <h2 style="font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; color: var(--text-main);">Luxenet Shop.</h2>
+                <p style="color: var(--text-muted); font-size: 17px; max-width: 560px; margin: 12px auto 0;">Premium cables, routers, and networking accessories — directly sourced and tested by our engineers.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-bottom: 48px;">
+                @foreach($featuredProducts as $product)
+                <a href="{{ route('shop.show', $product) }}" class="card reveal" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: 20px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); text-decoration: none; transition: all 0.35s cubic-bezier(0.4,0,0.2,1);" onmouseover="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 40px -10px rgba(184,150,42,0.15)';" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    <div style="position: relative; padding-bottom: 65%; background: rgba(255,255,255,0.01); overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                        @if($product->image_url)
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+                        @else
+                            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+                                <i class="fas fa-network-wired" style="font-size: 3rem; color: rgba(255,255,255,0.08);"></i>
+                            </div>
+                        @endif
+                    </div>
+                    <div style="padding: 22px; flex-grow: 1; display: flex; flex-direction: column;">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 8px; line-height: 1.3;">{{ $product->name }}</h3>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1;">{{ $product->description }}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <span style="font-size: 1.25rem; font-weight: 800; color: var(--primary);">UGX {{ number_format($product->selling_price, 0) }}</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 5px;">View <i class="fas fa-arrow-right" style="font-size: 10px;"></i></span>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+
+            <div class="reveal" style="text-align: center;">
+                <a href="{{ route('shop.catalog') }}" class="btn-primary magnetic-btn" style="display: inline-flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-shopping-bag"></i> View Full Catalog
+                </a>
+            </div>
+        </div>
+    </section>
+    @endif
+    {{-- ===== END SHOP SECTION ===== --}}
 
     <section id="features" style="background: var(--bg-surface); padding: 120px 5%;">
         <div class="section-header reveal">
@@ -555,6 +607,7 @@
                 <h4 style="color: var(--primary); margin-bottom: 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Quick Links</h4>
                 <a href="#services" style="font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; display: block; margin-bottom: 8px;">Services</a>
                 <a href="#projects" style="font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; display: block; margin-bottom: 8px;">Projects</a>
+                <a href="{{ route('shop.catalog') }}" style="font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; display: block; margin-bottom: 8px;">Shop</a>
                 <a href="#pricing" style="font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; display: block;">Pricing</a>
             </div>
         </div>
