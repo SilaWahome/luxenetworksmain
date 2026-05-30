@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Review extends Model
+{
+    protected $fillable = [
+        'author_name',
+        'author_role',
+        'content',
+        'author_image',
+        'approved',
+    ];
+
+    protected $casts = [
+        'approved' => 'boolean',
+    ];
+}

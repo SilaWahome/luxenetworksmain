@@ -582,6 +582,86 @@
         </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 border-t border-gray-800">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-500),transparent)] opacity-10"></div>
+      <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-gray-900 shadow-xl ring-1 shadow-indigo-500/5 ring-white/5 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+      
+      <div class="mx-auto max-w-2xl lg:max-w-4xl">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h3 style="font-size: 11px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.3em; color: var(--primary);">Client Testimonials</h3>
+        </div>
+        
+        <div class="reviews-container">
+          @forelse($reviews as $review)
+            <div class="review-item" style="display: none;">
+              <figure class="mt-10">
+                <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
+                  <p>“{{ $review->content }}”</p>
+                </blockquote>
+                <figcaption class="mt-10">
+                  <img src="{{ $review->author_image ?? 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }}" alt="{{ $review->author_name }}" class="mx-auto size-10 rounded-full object-cover" style="width: 40px; height: 40px;" />
+                  <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                    <div class="font-semibold text-white">{{ $review->author_name }}</div>
+                    @if($review->author_role)
+                      <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-white">
+                        <circle r="1" cx="1" cy="1" />
+                      </svg>
+                      <div class="text-gray-400">{{ $review->author_role }}</div>
+                    @endif
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          @empty
+            <div class="review-item active">
+              <figure class="mt-10">
+                <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
+                  <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
+                </blockquote>
+                <figcaption class="mt-10">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="mx-auto size-10 rounded-full object-cover" style="width: 40px; height: 40px;" />
+                  <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                    <div class="font-semibold text-white">Judith Black</div>
+                    <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-white">
+                      <circle r="1" cx="1" cy="1" />
+                    </svg>
+                    <div class="text-gray-400">CEO of Workcation</div>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          @endforelse
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .review-item.active {
+        display: block !important;
+        animation: fadeInReview 0.8s ease-in-out;
+      }
+      @keyframes fadeInReview {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const reviews = document.querySelectorAll('.review-item');
+        if (reviews.length > 1) {
+          let index = 0;
+          reviews[0].classList.add('active');
+          setInterval(() => {
+            reviews[index].classList.remove('active');
+            index = (index + 1) % reviews.length;
+            reviews[index].classList.add('active');
+          }, 5000);
+        }
+      });
+    </script>
+
     <footer style="padding: 60px 10% 36px; border-top: 1px solid rgba(255,255,255,0.08); background: #060d14;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; text-align: left; margin-bottom: 48px;">
             <div style="max-width: 300px;">

@@ -11,7 +11,8 @@ Route::get('/', function () {
     $partners = \App\Models\Partner::orderBy('order')->get();
     $works = \App\Models\Work::orderBy('order')->get()->groupBy('category');
     $latestBlogs = \App\Models\Blog::where('is_published', true)->latest('published_at')->take(3)->get();
-    return view('landing', compact('partners', 'works', 'latestBlogs'));
+    $reviews = \App\Models\Review::where('approved', true)->latest()->get();
+    return view('landing', compact('partners', 'works', 'latestBlogs', 'reviews'));
 })->middleware(\App\Http\Middleware\TrackVisit::class);
 
 Route::get('/storage/{path}', [\App\Http\Controllers\ImageController::class, 'show'])->where('path', '.*');
@@ -114,7 +115,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/shop/orders', [\App\Http\Controllers\Admin\ShopManagementController::class, 'orders'])->name('shop.orders');
     Route::patch('/shop/orders/{order}', [\App\Http\Controllers\Admin\ShopManagementController::class, 'updateOrderStatus'])->name('shop.orders.update');
     // These routes are named admin.shop.* because they live inside the admin middleware group
+
+    // Admin Review Management
+    Route::get('/reviews', [\App\Http\Controllers\Admin\ReviewManagementController::class, 'index'])->name('reviews.index');
+    Route::post('/reviews/{review}/approve', [\App\Http\Controllers\Admin\ReviewManagementController::class, 'approve'])->name('reviews.approve');
+    Route::delete('/reviews/{review}', [\App\Http\Controllers\Admin\ReviewManagementController::class, 'destroy'])->name('reviews.delete');
 });
+
+Route::post('/reviews', [\App\Http\Controllers\Admin\ReviewManagementController::class, 'store'])->name('reviews.store');
 
 // Public Shop Routes
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.catalog');

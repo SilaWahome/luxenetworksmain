@@ -116,6 +116,14 @@
                         </li>
 
                         <li class="menu-item">
+                            <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.reviews.index') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary"
+                                href="{{ route('admin.reviews.index') }}">
+                                <i class="ti ti-message-chatbot text-xl"></i>
+                                Reviews Mgmt
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
                             <a class="group flex items-center gap-x-3.5 rounded-md px-3 py-2 text-sm font-medium {{ request()->routeIs('admin.subscribers.*') ? 'bg-primary/5 text-primary' : 'text-default-600' }} transition-all hover:bg-primary/5 hover:text-primary"
                                 href="{{ route('admin.subscribers.index') }}">
                                 <i class="ti ti-users-group text-xl"></i>
