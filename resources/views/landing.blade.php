@@ -499,6 +499,7 @@
     </section>
     @endif
 
+    @if($reviews->isNotEmpty())
     <!-- Reviews Section -->
     <section class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 border-t border-gray-800">
       <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,var(--color-indigo-500),transparent)] opacity-10"></div>
@@ -510,7 +511,7 @@
         </div>
         
         <div class="reviews-container">
-          @forelse($reviews as $review)
+          @foreach($reviews as $review)
             <div class="review-item" style="display: none;">
               <figure class="mt-10">
                 <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
@@ -530,25 +531,7 @@
                 </figcaption>
               </figure>
             </div>
-          @empty
-            <div class="review-item active">
-              <figure class="mt-10">
-                <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
-                  <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
-                </blockquote>
-                <figcaption class="mt-10">
-                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&id=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="mx-auto size-10 rounded-full object-cover" style="width: 40px; height: 40px;" />
-                  <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                    <div class="font-semibold text-white">Judith Black</div>
-                    <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-white">
-                      <circle r="1" cx="1" cy="1" />
-                    </svg>
-                    <div class="text-gray-400">CEO of Workcation</div>
-                  </div>
-                </figcaption>
-              </figure>
-            </div>
-          @endforelse
+          @endforeach
         </div>
       </div>
     </section>
@@ -575,9 +558,12 @@
             index = (index + 1) % reviews.length;
             reviews[index].classList.add('active');
           }, 5000);
+        } else if (reviews.length === 1) {
+          reviews[0].classList.add('active');
         }
       });
     </script>
+    @endif
 
     <!-- Tech Meet & Greet CTA -->
     <section class="meet-greet-cta">
